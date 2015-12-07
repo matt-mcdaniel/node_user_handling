@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
+var React = require('react');
 var Q = require('q');
 
 module.exports = function(app) {
@@ -38,8 +39,8 @@ module.exports = function(app) {
 			users = contents;
 		});
 
-	app.get('/', function(req, res) {
-		res.render('users', { users: users })
+	app.get('/admin/users', function(req, res) {
+		res.status(200).send({ users: users })
 	});
 
 	app.get('/:id', function(req, res) {

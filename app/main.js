@@ -1,8 +1,10 @@
-var utils = require('./utils.js');
-var component = require('./components/component.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log(component());
-console.log(utils());
+import Users from './components/users.jsx';
 
-document.body.appendChild(component());
-document.body.appendChild(utils());
+function main() {
+	ReactDOM.render(<Users source="/admin/users"/>, document.getElementById('app'));
+}
+
+main();
