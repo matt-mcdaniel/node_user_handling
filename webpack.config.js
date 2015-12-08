@@ -1,4 +1,6 @@
 var path = require('path');
+var webpack = require('webpack');
+
 console.log('WEBPACK CONFIG');
 module.exports = {
   entry: path.resolve(__dirname, 'app/main.js'),

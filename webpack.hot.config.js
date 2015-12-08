@@ -1,5 +1,6 @@
 var path = require('path');
-console.log('WEBPACK HOT CONFIG');
+var webpack = require('webpack');
+
 module.exports = {
   entry: [
     'webpack/hot/dev-server',

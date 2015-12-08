@@ -20,13 +20,18 @@ const Users = React.createClass({
 	render() {
 		if (this.state.users) {
 			return (
-				<ul>
+				<ul className="row media-list">
 					{this.state.users.map(function(user){
-						return <li className="user" key={user._id } onClick={this.selectUser.bind(this, user)}>
+						return <li className="media col-xs-12" key={ user._id } onClick={this.selectUser.bind(this, user)}>
 							<Link to={`/users/${user._id}`} >
-								{user.name}
+								<div className="media-left">
+										<img src={user.picture_small} />
+								</div>
+								<div className="media-body">
+									<h4 className="media-heading">{user.name}</h4>
+								</div>
 							</Link>
-						</li>;
+						</li>
 					}.bind(this))}
 			 	</ul>
 			)
