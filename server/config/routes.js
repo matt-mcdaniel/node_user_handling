@@ -43,12 +43,6 @@ module.exports = function(app) {
 		res.status(200).send({ users: users })
 	});
 
-	app.get('/:id', function(req, res) {
-		var user = getById(req.params.id, function(user) {
-			res.render('detail', { user: user });
-		});
-	});
-
 }
 
 

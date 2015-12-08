@@ -1,10 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
-import Users from './components/users.jsx';
+import routes from './routes.jsx';
 
-function main() {
-	ReactDOM.render(<Users source="/admin/users"/>, document.getElementById('app'));
-}
-
-main();
+render(routes, document.getElementById('app'));
