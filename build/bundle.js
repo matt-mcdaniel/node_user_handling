@@ -24509,7 +24509,7 @@
 					{ className: 'col-md-offset-2 col-md-8' },
 					_react2.default.createElement(
 						'ul',
-						{ className: 'nav nav-tabs nav-justified' },
+						{ className: 'nav nav-pills nav-justified' },
 						_react2.default.createElement(
 							'li',
 							{ role: 'presentation', className: userClass, onClick: this.changeActive },
@@ -24597,37 +24597,37 @@
 								'li',
 								{ className: 'media col-xs-12', key: user._id, onClick: this.selectUser.bind(this, user) },
 								_react2.default.createElement(
-									'div',
-									{ className: 'media-left' },
+									_reactRouter.Link,
+									{ className: 'user-panel', to: '/users/' + user._id },
 									_react2.default.createElement(
-										_reactRouter.Link,
-										{ to: '/users/' + user._id },
+										'div',
+										{ className: 'media-left' },
 										_react2.default.createElement('img', { src: user.picture_small })
-									)
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'media-body' },
-									_react2.default.createElement(
-										'h4',
-										{ className: 'media-heading' },
-										user.name,
-										' ',
-										_react2.default.createElement(
-											'span',
-											{ className: 'email' },
-											user.email
-										)
 									),
 									_react2.default.createElement(
-										'p',
-										null,
-										'Age: ',
-										user.age,
-										' , Company: ',
-										user.company,
-										', Registered: ',
-										date
+										'div',
+										{ className: 'media-body' },
+										_react2.default.createElement(
+											'h4',
+											{ className: 'media-heading' },
+											user.name,
+											' ',
+											_react2.default.createElement(
+												'span',
+												{ className: 'email' },
+												user.email
+											)
+										),
+										_react2.default.createElement(
+											'p',
+											null,
+											'Age: ',
+											user.age,
+											' , Company: ',
+											user.company,
+											', Registered: ',
+											date
+										)
 									)
 								)
 							);
@@ -34218,19 +34218,53 @@
 				'div',
 				{ className: 'col-xs-12' },
 				_react2.default.createElement(
-					'h1',
-					null,
+					'h3',
+					{ className: 'user-name' },
 					user.name
 				),
 				_react2.default.createElement(
-					'p',
-					null,
-					user.email
-				),
-				_react2.default.createElement(
-					'div',
-					null,
-					user.about
+					'table',
+					{ className: 'table table-hover' },
+					_react2.default.createElement(
+						'thead',
+						null,
+						_react2.default.createElement(
+							'tr',
+							null,
+							_react2.default.createElement(
+								'th',
+								null,
+								'Field'
+							),
+							_react2.default.createElement(
+								'th',
+								null,
+								'Value'
+							)
+						)
+					),
+					_react2.default.createElement(
+						'tbody',
+						null,
+						Object.keys(user).map((function (key) {
+							if (typeof user[key] === 'string') {
+								return _react2.default.createElement(
+									'tr',
+									{ key: user[key] },
+									_react2.default.createElement(
+										'th',
+										null,
+										key
+									),
+									_react2.default.createElement(
+										'td',
+										null,
+										user[key]
+									)
+								);
+							}
+						}).bind(this))
+					)
 				)
 			);
 		}

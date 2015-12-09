@@ -9,11 +9,29 @@ userEvent.on('userSelect', function(x) {
 
 const User = React.createClass({
 	render() {
-		return <div className="col-xs-12">
-			<h1>{user.name}</h1>
-			<p>{user.email}</p>
-			<div>{user.about}</div>
-		</div>;
+		return (
+			<div className="col-xs-12">
+				<h3 className="user-name">{ user.name }</h3>
+				<table className="table table-hover">
+					<thead>
+						<tr>
+							<th>Field</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						{Object.keys(user).map(function(key) {
+							if (typeof user[key] === 'string') {
+								return <tr key={ user[key] }>
+									<th>{key}</th>
+									<td>{user[key]}</td>
+								</tr>
+							}
+						}.bind(this))}
+					</tbody>
+				</table>
+			</div>
+		)
 	}
 });
 

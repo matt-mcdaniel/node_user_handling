@@ -34,14 +34,17 @@ const Users = React.createClass({
 								.move(0, 2)
 								.join('-');
 							return <li className="media col-xs-12" key={ user._id } onClick={this.selectUser.bind(this, user)}>
+								<Link  className="user-panel" to={`/users/${user._id}`} >
 									<div className="media-left">
-											<Link to={`/users/${user._id}`} ><img src={user.picture_small} /></Link>
+										<img src={user.picture_small} />
 									</div>
 									<div className="media-body">
 										<h4 className="media-heading">{user.name} <span className="email">{user.email}</span></h4>
 										<p>Age: { user.age } , Company: { user.company }, Registered: { date }</p>
 									</div>
+								</Link>
 							</li>
+
 						}.bind(this))}
 				 	</ul>
 			 	</div>

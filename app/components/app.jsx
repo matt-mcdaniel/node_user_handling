@@ -15,7 +15,7 @@ const App = React.createClass({
 		return (
 				<div className="row">
 					<div className="col-md-offset-2 col-md-8">
-						<ul className="nav nav-tabs nav-justified">
+						<ul className="nav nav-pills nav-justified">
 							<li role="presentation" className={userClass} onClick={this.changeActive}>
 								<Link to="/users">Users</Link>
 							</li>
