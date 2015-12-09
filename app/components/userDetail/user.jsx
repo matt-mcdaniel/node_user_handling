@@ -1,5 +1,5 @@
 import React from 'react';
-import userEvent from '../event.js';
+import userEvent from '../../event.js';
 
 let user = {};
 

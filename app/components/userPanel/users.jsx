@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Link } from 'react-router';
-import userEvent from '../event.js';
+import userEvent from '../../event.js';
 
 Array.prototype.move = function (from, to) {
   this.splice(to, 0, this.splice(from, 1)[0]);
@@ -28,11 +28,17 @@ const Users = React.createClass({
 				<div className="row">
 					<ul className="media-list col-xs-12">
 						{this.state.users.map(function(user){
+
 							let date = user.registered
 								.slice(0, 10)
 								.split('-')
 								.move(0, 2)
 								.join('-');
+
+							let company = user.company
+								.toLowerCase()
+								.replace( /\b\w/g, function (m) { return m.toUpperCase(); });
+
 							return <li className="media col-xs-12" key={ user._id } onClick={this.selectUser.bind(this, user)}>
 								<Link  className="user-panel" to={`/users/${user._id}`} >
 									<div className="media-left">
@@ -40,7 +46,19 @@ const Users = React.createClass({
 									</div>
 									<div className="media-body">
 										<h4 className="media-heading">{user.name} <span className="email">{user.email}</span></h4>
-										<p>Age: { user.age } , Company: { user.company }, Registered: { date }</p>
+										<ul className="user-properties-list">
+											<li><span className="label">Company</span> { company }</li>
+											<li><span className="label">Balance</span> { user.balance }</li>
+											<li><span className="label">Registered</span> { date }</li>
+											<li><span className="label">Tags</span> {
+												user.tags
+													.slice(0, 2)
+													.map(function(tag) {
+														return <p className="tags label label-default" key={ tag }> { tag } </p>;
+													})
+
+											}</li>
+										</ul>
 									</div>
 								</Link>
 							</li>

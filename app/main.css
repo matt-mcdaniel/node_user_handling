@@ -1,0 +1,26 @@
+/* @import 'bootstrap.min.css'; */
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css';
+
+@import 'components/userDetail/user.css';
+@import 'components/userPanel/users.css';
+
+@import 'components/about/about.css';
+@import 'components/app/app.css';
+
+h1, h2, h3, h4, h5, h6 {
+	color: #222326;
+}
+
+p, ol, ul, li {
+	font-size: 16px;
+	color: #66676e;
+}
+
+a, a:-webkit-any-link {
+	text-decoration: none;
+}
+
+.nav {
+	margin-bottom: 40px;
+}
+
