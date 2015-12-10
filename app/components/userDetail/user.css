@@ -1,4 +1,64 @@
+/* hide user edit fields by default */
+.edit {
+	display: none;
+}
+
+.edit.active {
+	display: table-cell;
+}
+
+.view.hidden {
+	display: none;
+}
+
 .user-name {
 	margin-bottom: 20px;
 	text-align: center;
+}
+
+.table-header, .view {
+	padding-top: 20px;
+}
+
+/* override bootstrap styles */
+.table>tbody>tr>td:not(.edit), .table>tbody>tr>th,
+.table>tfoot>tr>td:not(.edit), .table>tfoot>tr>th,
+.table>thead>tr>td:not(.edit), .table>thead>tr>th {
+	padding-top: 18px;
+	min-width: 150px;
+}
+
+/* align key to right */
+.table>thead>tr>th:first-of-type,
+.table>tbody>tr>th {
+	text-align: right;
+	padding-right: 35px;
+}
+
+.table>tbody>tr>td.edit {
+	padding-top: 11px;
+}
+
+td[id^="edit_"]:before {
+    content: "\26AC";
+    position: relative;
+    left: -30px;
+    top: -4px;
+    height: 0;
+    display: block;
+    font-size: 26px;
+    color: #5cb85c;
+    opacity: 0.4;
+}
+
+.table-row {
+	height: 55px;
+}
+
+.table-row.active {
+	background-color: #f5f5f5;
+}
+
+.table-row.active:hover {
+	background-color: none;
 }
