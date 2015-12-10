@@ -56,7 +56,27 @@
 
 .label {
 	color: #a0a0a0;
-}/* @import 'bootstrap.min.css'; */
+}.nav-item {
+	display: inline-block;
+}
+
+.nav-item a {
+	color: #777;
+	display: inline-block;
+	font-size: 16px;
+	padding: 20px;
+}
+
+.nav-item a:hover {
+	color: #555;
+}
+
+.nav-item.active {
+	color: #555;
+	background-color: #e7e7e7;
+}
+
+/* @import 'bootstrap.min.css'; */
 
 h1, h2, h3, h4, h5, h6 {
 	color: #222326;

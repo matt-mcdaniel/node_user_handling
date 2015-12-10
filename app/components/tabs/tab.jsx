@@ -1,14 +1,20 @@
 import React from 'react';
 import { IndexRoute, Redirect, Router, Route, Link } from 'react-router';
 
-let Tab = React.createClass({
+const Tab = React.createClass({
+	handleClick(e) {
+		this.props.handleClick();
+	},
 	render() {
 		return (
-			<li role="presentation" key={this.props.key}>
-				<Link to={this.props.url}>
+			<div role="presentation"
+				 key={this.props.key}
+				 className={this.props.isCurrent ? 'nav-item active' : 'nav-item'}
+				 >
+				<Link to={this.props.url} onClick={this.handleClick} >
 					{this.props.name}
 				</Link>
-			</li>
+			</div>
 		)
 	}
 });

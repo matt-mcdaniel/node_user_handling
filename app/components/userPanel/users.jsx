@@ -47,9 +47,8 @@ const Users = React.createClass({
 									<div className="media-body">
 										<h4 className="media-heading">{user.name} <span className="email">{user.email}</span></h4>
 										<ul className="user-properties-list">
-											<li><span className="label">Company</span> { company }</li>
-											<li><span className="label">Balance</span> { user.balance }</li>
 											<li><span className="label">Registered</span> { date }</li>
+											<li><span className="label">Balance</span> { user.balance }</li>
 											<li><span className="label">Tags</span> {
 												user.tags
 													.slice(0, 2)

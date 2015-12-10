@@ -1,0 +1,20 @@
+.nav-item {
+	display: inline-block;
+}
+
+.nav-item a {
+	color: #777;
+	display: inline-block;
+	font-size: 16px;
+	padding: 20px;
+}
+
+.nav-item a:hover {
+	color: #555;
+}
+
+.nav-item.active {
+	color: #555;
+	background-color: #e7e7e7;
+}
+

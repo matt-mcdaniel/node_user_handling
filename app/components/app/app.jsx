@@ -1,31 +1,38 @@
 import React from 'react';
-import { IndexRoute, Redirect, Router, Route, Link } from 'react-router';
+
+import TabList from '../../components/tabs/tabList.js';
+import Tabs from '../../components/tabs/tabs.jsx';
 
 const App = React.createClass({
 	getInitialState() {
-		return { active: 'users' };
+		let pathname = this.props.location.pathname;
+		let locations = TabList.map(function(tab) {
+			return tab.url
+		});
+		let currentTab = locations.indexOf(pathname) > -1 ? pathname : '/users';
+		return {
+			currentTab: currentTab
+		}
 	},
-	changeActive() {
-		console.log(arguments);
-		this.setState({ active: this.state.active === 'users' ? 'about' : 'users' });
+	changeTab(tab) {
+		this.setState({ currentTab: tab.url });
 	},
 	render() {
-		let userClass = this.state.active === 'users' ? 'active' : '';
-		let aboutClass = this.state.active === 'about' ? 'active' : '';
 		return (
-				<div className="row">
-					<div className="col-md-offset-2 col-md-8">
-						<ul className="nav nav-pills nav-justified">
-							<li role="presentation" className={userClass} onClick={this.changeActive}>
-								<Link to="/users">Users</Link>
-							</li>
-							<li role="presentation" className={aboutClass} onClick={this.changeActive}>
-								<Link to="/about">About</Link>
-							</li>
-						</ul>
-						{this.props.children}
+			<div className="app-container">
+				<Tabs
+					currentTab={this.state.currentTab}
+					changeTab={this.changeTab}
+					tabList={TabList}
+				/>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-offset-2 col-md-8">
+							{this.props.children}
+						</div>
 					</div>
 				</div>
+			</div>
 		)
 	}
 });
