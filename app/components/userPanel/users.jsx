@@ -1,6 +1,8 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import $ from 'jquery';
 import { Link } from 'react-router';
+
 import userEvent from '../../event.js';
 
 Array.prototype.move = function (from, to) {
