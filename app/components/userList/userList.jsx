@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import { Link } from 'react-router';
 
 import userEvent from '../../event.js';
@@ -12,19 +11,14 @@ Array.prototype.move = function (from, to) {
 const Users = React.createClass({
 	getInitialState() {
 		return {
-			users: null
+			users: this.props.route.users,
+			selectedUser: null
 		}
-	},
-	componentDidMount() {
-		$.get('admin/users').done(function(result) {
-			this.setState({ users: result['users'] });
-		}.bind(this));
 	},
 	selectUser(user) {
 		userEvent.emit('userSelect', user);
 	},
 	render() {
-		console.log(this.props);
 		if (this.state.users) {
 			return (
 				<div className="row">

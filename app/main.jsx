@@ -2,24 +2,35 @@
 import './main.css';
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { IndexRoute, Redirect, Router, Route, Link } from 'react-router';
+import { Provider } from 'react-redux';
 
 // Load required components
 import App from './components/app/app.jsx';
 import UserList from './components/userList/userList.jsx';
 import UserDetail from './components/userDetail/userDetail.jsx';
 import About from './components/about/about.jsx';
+import store from './store.js';
+import $ from 'jquery';
 
-render(
-	<Router>
-		<Route path="/" component={App}>
-			<IndexRoute component={UserList} />
-			<Route path="users" component={UserList}/>
-			<Route path="users/:id" component={UserDetail} />
-			<Route path="about" component={About} />
-		</Route>
-	</Router>,
-	document.getElementById('app')
-)
+$.get('admin/users').done(function(result) {
+	result['users'].forEach((u) => store.dispatch({ 'type': 'ADD_USER', 'user': u }));
+});
 
+const render = () => {
+	ReactDOM.render(
+		<Router>
+			<Route path="/" component={App}>
+				<IndexRoute component={UserList} />
+				<Route path="users" component={UserList} users={store.getState()}/>
+				<Route path="users/:id" component={UserDetail} />
+				<Route path="about" component={About} />
+			</Route>
+		</Router>,
+		document.getElementById('app')
+	)
+}
+
+// store.subscribe(render);
+render();
