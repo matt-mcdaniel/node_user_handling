@@ -1,5 +1,6 @@
 import React from 'react';
 import userEvent from '../../event.js';
+import { connect } from 'react-redux';
 
 let user = {};
 
@@ -14,12 +15,13 @@ const User = React.createClass({
 			activeRowIndex: null,
 		}
 	},
-	edit(val, i) {
+	edit(e) {
 		// Set Active Row Styles
-		this.setState({
-			value: val,
-			activeRowIndex: i
-		});
+		console.log('edit: ', e);
+		// this.setState({
+		// 	value: val,
+		// 	activeRowIndex: i
+		// });
 	},
 	handleChange(e) {
 		this.setState({ value: e.target.value });
@@ -33,7 +35,7 @@ const User = React.createClass({
 						<th className="table-header">Value</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody onClick={this.edit}>
 					{Object.keys(user)
 						.filter(function(v) {
 							return typeof user[v] === 'string';
@@ -44,7 +46,7 @@ const User = React.createClass({
 							return (
 								<tr key={i} className={active ? 'table-row active' : 'table-row'}>
 									<th className="table-header">{key}</th>
-									<td className={active ? 'view hidden' : 'view'} id={'view_' + key} onClick={this.edit.bind(this, val, i)}>{val}</td>
+									<td className={active ? 'view hidden' : 'view'} id={'view_' + key} >{val}</td>
 									<td className={active ? 'edit active' : 'edit'} id={'edit_' + key}>
 										<input className="form-control" onChange={this.handleChange} type="text" value={this.state.value} />
 									</td>
