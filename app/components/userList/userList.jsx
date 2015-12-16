@@ -23,6 +23,7 @@ const Users = React.createClass({
 		userEvent.emit('userSelect', user);
 	},
 	render() {
+		console.log(this.props);
 		if (this.state.users) {
 			return (
 				<div className="row">

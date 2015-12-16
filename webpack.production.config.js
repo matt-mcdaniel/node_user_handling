@@ -2,7 +2,7 @@ var path = require('path');
 var node_modules_dir = path.resolve(__dirname, 'node_modules');
 console.log('WEBPACK CONFIG PRODUCTION');
 var config = {
-  entry: path.resolve(__dirname, 'app/main.js'),
+  entry: path.resolve(__dirname, 'app/main.jsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'dist.js'
