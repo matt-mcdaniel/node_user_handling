@@ -15,19 +15,22 @@ import store from './store.js';
 import $ from 'jquery';
 
 $.get('admin/users').done(function(result) {
+	// Ajax call to get inital users from Express
 	result['users'].forEach((u) => store.dispatch({ 'type': 'ADD_USER', 'user': u }));
 });
 
 const render = () => {
 	ReactDOM.render(
-		<Router>
-			<Route path="/" component={App}>
-				<IndexRoute component={UserList} />
-				<Route path="users" component={UserList} users={store.getState()}/>
-				<Route path="users/:id" component={UserDetail} />
-				<Route path="about" component={About} />
-			</Route>
-		</Router>,
+		<Provider store={store}>
+			<Router>
+				<Route path="/" component={App}>
+					<IndexRoute component={UserList} />
+					<Route path="users" component={UserList} />
+					<Route path="users/:id" component={UserDetail} />
+					<Route path="about" component={About} />
+				</Route>
+			</Router>
+		</Provider>,
 		document.getElementById('app')
 	)
 }

@@ -1,6 +1,8 @@
 # About
 
-This is an example of an administrative interface for user management. This application uses [Node](https://nodejs.org/en/)/[Express](http://expressjs.com/en/index.html) to distribute resources to the front-end. It uses [Webpack](https://webpack.github.io/) to manage development and build tasks. This application uses [React](https://facebook.github.io/react/docs/glossary.html) to manage front-end view components. The project is using [Babel](https://babeljs.io/) to transpile ES2015 JavaScript code.
+This is an example of an React application for user administration. This application uses the Redux architecture for managing data.
+
+This application uses [Node](https://nodejs.org/en/)/[Express](http://expressjs.com/en/index.html) to distribute resources to the front-end. It uses [Webpack](https://webpack.github.io/) to manage development and build tasks. This application uses [React](https://facebook.github.io/react/docs/glossary.html) to manage front-end view components. The project is using [Babel](https://babeljs.io/) to transpile ES2015 JavaScript code.
 
 ## Development and Build Instructions
 1. Clone repo with `git clone https://github.com/matt81m/node_user_handling.git`.

@@ -1,22 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router';
-
 import userEvent from '../../event.js';
+import UserListItem from './userListItem.jsx';
 
+// Helper chain function to reorder array items (reformatting dates)
 Array.prototype.move = function (from, to) {
   this.splice(to, 0, this.splice(from, 1)[0]);
   return this;
 };
 
+/** React Component Lifecycle
+Data changes are subscribed to by the store defined
+in the component's this.context.store (the Component inherits
+this context from the <Provider /> component). On data change,
+componentDidMount fire off a state change, handled by handleNewState()
+which resets the value of the component's state and triggers a
+new render()
+*/
+
 const Users = React.createClass({
 	getInitialState() {
+		// set default state to be overwritten on data change
 		return {
-			users: this.props.route.users,
+			users: this.context.store.getState(),
 			selectedUser: null
 		}
 	},
-	selectUser(user) {
-		userEvent.emit('userSelect', user);
+	handleNewState() {
+		// Set the new state
+		this.setState({
+			users: this.context.store.getState()
+		})
+	},
+	componentDidMount() {
+		var { store } = this.context;
+		// Fire off event went data changes (on store.dispatch)
+		store.subscribe(this.handleNewState);
+	},
+	handleUserSelect(user) {
+		console.log(user);
 	},
 	render() {
 		if (this.state.users) {
@@ -24,41 +45,12 @@ const Users = React.createClass({
 				<div className="row">
 					<ul className="media-list col-xs-12">
 						{this.state.users.map(function(user){
-
-							let date = user.registered
-								.slice(0, 10)
-								.split('-')
-								.move(0, 2)
-								.join('-');
-
-							let company = user.company
-								.toLowerCase()
-								.replace( /\b\w/g, function (m) { return m.toUpperCase(); });
-
-							return <li className="media col-xs-12" key={ user._id } onClick={this.selectUser.bind(this, user)}>
-								<Link  className="user-panel" to={`/users/${user._id}`} >
-									<div className="media-left">
-										<img src={user.picture_small} />
-									</div>
-									<div className="media-body">
-										<h4 className="media-heading">{user.name} <span className="email">{user.email}</span></h4>
-										<ul className="user-properties-list">
-											<li><span className="label">Registered</span> { date }</li>
-											<li><span className="label">Balance</span> { user.balance }</li>
-											<li><span className="label">Tags</span> {
-												user.tags
-													.slice(0, 2)
-													.map(function(tag) {
-														return <p className="tags label label-default" key={ tag }> { tag } </p>;
-													})
-
-											}</li>
-										</ul>
-									</div>
-								</Link>
-							</li>
-
-						}.bind(this))}
+							return <UserListItem
+								user={user}
+								key={user._id}
+								handleUserSelect={this.handleUserSelect}
+							/>;
+						}, this)}
 				 	</ul>
 			 	</div>
 			)
@@ -66,5 +58,8 @@ const Users = React.createClass({
 		return <li>Loading Users...</li>
 	}
 });
+Users.contextTypes = {
+	store: React.PropTypes.object
+}
 
 export default Users;

@@ -1,18 +1,23 @@
-import { createStore } from 'redux';
-import objectAssign from 'object-assign';
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './config/reducer';
 
-const reducer = (state = [], action) => {
-	switch (action.type) {
+function logger({ getState }) {
+	return (next) => (action) => {
+    console.log(action.type, action)
 
-		case 'ADD_USER':
-			return [...state, action.user]
+    // Call the next dispatch method in the middleware chain.
+    let returnValue = next(action)
 
-		default:
-			return state;
+    console.log('state after dispatch', getState())
 
-	}
+    // This will likely be the action itself, unless
+    // a middleware further in chain changed it.
+    return returnValue
+  }
 }
 
-const store = createStore(reducer);
+let middleware = applyMiddleware(logger)(createStore);
+let store = middleware(reducer);
+//const store = createStore(reducer);
 
 export default store;
