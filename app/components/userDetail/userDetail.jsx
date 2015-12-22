@@ -1,12 +1,4 @@
 import React from 'react';
-import userEvent from '../../event.js';
-import { connect } from 'react-redux';
-
-let user = {};
-
-userEvent.on('userSelect', function(x) {
-	user = x;
-});
 
 const User = React.createClass({
 	getInitialState() {

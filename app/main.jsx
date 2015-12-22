@@ -11,12 +11,17 @@ import App from './components/app/app.jsx';
 import UserList from './components/userList/userList.jsx';
 import UserDetail from './components/userDetail/userDetail.jsx';
 import About from './components/about/about.jsx';
-import store from './store.js';
-import $ from 'jquery';
+import store from './logger.js';
 
-$.get('admin/users').done(function(result) {
-	// Ajax call to get inital users from Express
-	result['users'].forEach((u) => store.dispatch({ 'type': 'ADD_USER', 'user': u }));
+socket.on('readme', function(data) {
+	store.dispatch({ 'type': 'README', 'readme': data });
+});
+
+// wait for users -> render root DOM node
+socket.on('users', function(data) {
+	console.log(data);
+	data.forEach((u) => store.dispatch({ 'type': 'ADD_USER', 'user': u }));
+	render();
 });
 
 const render = () => {
@@ -35,5 +40,4 @@ const render = () => {
 	)
 }
 
-// store.subscribe(render);
-render();
+

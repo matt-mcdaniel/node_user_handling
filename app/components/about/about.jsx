@@ -1,16 +1,17 @@
 import React from 'react';
-import $ from 'jquery';
 
 let About = React.createClass({
 	getInitialState() {
 		return {
-			readme: null
+			readme: this.context.store.getState().readme
 		}
 	},
+	handleNewState() {
+		this.setState({ 'readme': this.context.store.getState().readme });
+	},
 	componentDidMount() {
-		$.get('admin/readme').done(function(result) {
-			this.setState({ readme: result['readme'] });
-		}.bind(this));
+		var { store } = this.context;
+		store.subscribe(this.handleNewState);
 	},
 	render() {
 		if (this.state.readme) {
@@ -23,5 +24,9 @@ let About = React.createClass({
 		return <p>Loading About...</p>;
 	}
 });
+
+About.contextTypes = {
+	store: React.PropTypes.object
+}
 
 export default About;

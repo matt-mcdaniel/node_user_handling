@@ -1,5 +1,4 @@
 import React from 'react';
-import userEvent from '../../event.js';
 import UserListItem from './userListItem.jsx';
 
 // Helper chain function to reorder array items (reformatting dates)
@@ -21,15 +20,15 @@ const Users = React.createClass({
 	getInitialState() {
 		// set default state to be overwritten on data change
 		return {
-			users: this.context.store.getState(),
+			users: this.context.store.getState().users,
 			selectedUser: null
 		}
 	},
 	handleNewState() {
 		// Set the new state
 		this.setState({
-			users: this.context.store.getState()
-		})
+			users: this.context.store.getState().users
+		});
 	},
 	componentDidMount() {
 		var { store } = this.context;
@@ -37,7 +36,7 @@ const Users = React.createClass({
 		store.subscribe(this.handleNewState);
 	},
 	handleUserSelect(user) {
-		console.log(user);
+		store.dispatch({ 'SELECT_USER' : user });
 	},
 	render() {
 		if (this.state.users) {
@@ -46,8 +45,8 @@ const Users = React.createClass({
 					<ul className="media-list col-xs-12">
 						{this.state.users.map(function(user){
 							return <UserListItem
-								user={user}
 								key={user._id}
+								user={user}
 								handleUserSelect={this.handleUserSelect}
 							/>;
 						}, this)}
@@ -58,6 +57,7 @@ const Users = React.createClass({
 		return <li>Loading Users...</li>
 	}
 });
+
 Users.contextTypes = {
 	store: React.PropTypes.object
 }
