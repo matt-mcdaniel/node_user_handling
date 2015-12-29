@@ -6,7 +6,7 @@ const TabList = [
 	},
 	{
 		'id': 2,
-		'name': 'About',
+		'name': 'Aboutsqd3dded411114455d2ppd35333',
 		'url': '/about'
 	}
 ]

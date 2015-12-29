@@ -1,13 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducer from './config/reducer';
+import reducer from './config/reducer.js';
 
 function logger({ getState }) {
 	return (next) => (action) => {
 
-	// fire socket event
+	console.log('/** LOGGER **/');
    console.log(action.type, action);
-   socket.emit(action.type, getState());
-   console.log('from reducer:', getState());
 
    // Call the next dispatch method in the middleware chain.
    return next(action);

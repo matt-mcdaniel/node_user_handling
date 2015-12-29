@@ -1,1 +1,46 @@
-{"_id":"565f8092190a7c05ba5a4c5c","index":1,"guid":"1404512d-84a5-4ebf-b01f-dff84b5ffca4","isActive":true,"balance":"$3,327.83","picture_small":"http://placehold.it/50x50","picture_large":"http://placehold.it/200x200","age":27,"eyeColor":"brown","name":"Drake Hull","gender":"male","company":"PYRAMIS","email":"drakehull@pyramis.com","phone":"+1 (855) 505-3720","address":"507 Troy Avenue, Grapeview, Nebraska, 6816","about":"Sunt sunt et irure aute duis. Dolor ex ex ad do irure in deserunt id elit ad et minim commodo velit. Ipsum id est ea nisi. In aliqua consequat voluptate reprehenderit. Cupidatat nulla sunt aliquip occaecat fugiat ea et cupidatat ex nisi tempor. Reprehenderit excepteur est dolor incididunt minim ut aute quis aliqua laboris in aliqua aliqua mollit.\r\n","registered":"2014-11-24T04:49:20 +08:00","latitude":47.582045,"longitude":-94.435417,"tags":["eu","ad","et","do","aute","dolor","sint"],"friends":[{"id":0,"name":"Moss Franco"},{"id":1,"name":"Lula Solomon"},{"id":2,"name":"Rogers Church"}],"greeting":"Hello, Drake Hull! You have 8 unread messages.","favoriteFruit":"apple"}
+{
+  "_id": "565f8092190a7c05ba5a4c5c",
+  "index": 1,
+  "guid": "1404512d-84a5-4ebf-b01f-dff84b5ffca4",
+  "isActive": true,
+  "balance": "$3,327.83",
+  "picture_small": "http://placehold.it/50x50",
+  "picture_large": "http://placehold.it/200x200",
+  "age": 27,
+  "eyeColor": "brown",
+  "name": "Drake Hull",
+  "gender": "male",
+  "company": "PYRAMIS",
+  "email": "drakehull@pyramis.com",
+  "phone": "+1 (855) 505-3720",
+  "address": "507 Troy Avenue, Grapeview, Nebraska, 6816",
+  "about": "Sunt sunt et irure aute duis. Dolor ex ex ad do irure in deserunt id elit ad et minim commodo velit. Ipsum id est ea nisi. In aliqua consequat voluptate reprehenderit. Cupidatat nulla sunt aliquip occaecat fugiat ea et cupidatat ex nisi tempor. Reprehenderit excepteur est dolor incididunt minim ut aute quis aliqua laboris in aliqua aliqua mollit.\r\n",
+  "registered": "2014-11-24T04:49:20 +08:00",
+  "latitude": 47.582045,
+  "longitude": -94.435417,
+  "tags": [
+    "eu",
+    "ad",
+    "et",
+    "do",
+    "aute",
+    "dolor",
+    "sint"
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Moss Franco"
+    },
+    {
+      "id": 1,
+      "name": "Lula Solomon"
+    },
+    {
+      "id": 2,
+      "name": "Rogers Church"
+    }
+  ],
+  "greeting": "Hello, Drake Hull! You have 8 unread messages.",
+  "favoriteFruit": "apple"
+}

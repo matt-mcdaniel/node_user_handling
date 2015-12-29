@@ -4,9 +4,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
+    './app/main.jsx',
     'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
-    path.resolve(__dirname, 'app/main.jsx')
+    'webpack-dev-server/client?http://0.0.0.0:8080'
   ],
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -24,11 +24,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        include: [
+          path.resolve(__dirname)
+        ]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

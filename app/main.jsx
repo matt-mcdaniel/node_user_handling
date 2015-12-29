@@ -12,17 +12,23 @@ import UserList from './components/userList/userList.jsx';
 import UserDetail from './components/userDetail/userDetail.jsx';
 import About from './components/about/about.jsx';
 import store from './logger.js';
+import $ from 'jquery';
 
-socket.on('readme', function(data) {
-	store.dispatch({ 'type': 'README', 'readme': data });
-});
+// socket.on('readme', function(data) {
+// 	store.dispatch({ 'type': 'README', 'readme': data });
+// });
 
 // wait for users -> render root DOM node
-socket.on('users', function(data) {
-	console.log(data);
-	data.forEach((u) => store.dispatch({ 'type': 'ADD_USER', 'user': u }));
-	render();
-});
+// socket.on('users', function(data) {
+// 	data.forEach((u) => store.dispatch({ 'type': 'ADD_USER', 'user': u }));
+// 	render();
+// });
+
+console.log($);
+// $.get('users', (data) => {
+// 	console.log(data);
+// });
+
 
 const render = () => {
 	ReactDOM.render(
@@ -39,5 +45,8 @@ const render = () => {
 		document.getElementById('app')
 	)
 }
+
+render();
+
 
 

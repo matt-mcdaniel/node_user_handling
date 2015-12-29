@@ -1,5 +1,4 @@
-/* @import 'bootstrap.min.css'; */
-@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css';
+@import './styles/bootstrap.min.css';
 
 @import 'components/userDetail/userDetail.css';
 @import 'components/userList/userList.css';

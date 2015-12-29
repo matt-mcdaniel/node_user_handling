@@ -18,19 +18,16 @@ const UserListItem = React.createClass({
 				return <p className="tags label label-default" key={ tag }> { tag } </p>;
 			});
 	},
-	handleUserSelect(user) {
-		this.props.handleUserSelect(user);
-	},
 	render() {
 		let user = this.props.user;
 		let registered = this.formatDate(user.registered);
 		let company = this.formatCompany(user.company);
 		let tags = this.formatTags(user.tags);
 		return (
-			<li className="media col-xs-12" key={ user._id } onClick={this.handleUserSelect.bind(this, user)}>
-				<Link  className="user-panel" to={`/users/${user._id}`} >
+			<li className="media col-xs-12" key={ user._id } >
+				<Link className="user-panel" to={`/users/${user._id}`} >
 					<div className="media-left">
-						<img src={user.picture_small} />
+						{/* <img src={user.picture_small} /> */}
 					</div>
 					<div className="media-body">
 						<h4 className="media-heading">{user.name} <span className="email">{user.email}</span></h4>

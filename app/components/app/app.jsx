@@ -5,11 +5,12 @@ import Tabs from '../../components/tabs/tabs.jsx';
 
 const App = React.createClass({
 	getInitialState() {
-		let pathname = this.props.location.pathname;
-		let locations = TabList.map(function(tab) {
-			return tab.url
+		var pathname = this.props.location.pathname;
+		var locations = TabList.map(function(tab) {
+			return tab.url;
 		});
-		let currentTab = locations.indexOf(pathname) > -1 ? pathname : '/users';
+		var currentTab = locations.indexOf(pathname) > -1 ? pathname : '/users';
+		//console.log(pathname, locations, currentTab);
 		return {
 			currentTab: currentTab
 		}

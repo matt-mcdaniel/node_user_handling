@@ -10,7 +10,7 @@ Array.prototype.move = function (from, to) {
 /** React Component Lifecycle
 Data changes are subscribed to by the store defined
 in the component's this.context.store (the Component inherits
-this context from the <Provider /> component). On data change,
+this context from the <Provider> component). On data change,
 componentDidMount fire off a state change, handled by handleNewState()
 which resets the value of the component's state and triggers a
 new render()
@@ -19,24 +19,11 @@ new render()
 const Users = React.createClass({
 	getInitialState() {
 		// set default state to be overwritten on data change
-		return {
-			users: this.context.store.getState().users,
-			selectedUser: null
-		}
-	},
-	handleNewState() {
-		// Set the new state
-		this.setState({
-			users: this.context.store.getState().users
-		});
+		return { users: this.context.store.getState() }
 	},
 	componentDidMount() {
-		var { store } = this.context;
-		// Fire off event went data changes (on store.dispatch)
-		store.subscribe(this.handleNewState);
-	},
-	handleUserSelect(user) {
-		store.dispatch({ 'SELECT_USER' : user });
+		this.context.store.dispatch({ 'type': 'GET_USERS' });
+		console.log('getting state', this.context.store.getState());
 	},
 	render() {
 		if (this.state.users) {
@@ -47,7 +34,6 @@ const Users = React.createClass({
 							return <UserListItem
 								key={user._id}
 								user={user}
-								handleUserSelect={this.handleUserSelect}
 							/>;
 						}, this)}
 				 	</ul>

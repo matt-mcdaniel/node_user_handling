@@ -1,42 +1,55 @@
 var express = require('express');
-var http = require('http');
-var app = express();
-
 var path = require('path');
+var http = require('http');
 
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
-var socketHandler = require('./server/config/socketHandler.js');
+var config = require('./webpack.hot.config.js');
+var proxy = require('proxy-middleware');
+var url = require('url');
 
-var port = 3000;
+// sockets
+var routes = require('./server/config/routes.js');
 
-// parse .jsx files
 var ReactEngine = require('react-engine');
 var engine = ReactEngine.server.create({});
-app.engine('.jsx', engine);
 
 console.log('Node Environment: ', process.env.NODE_ENV);
 
 var isDev = process.env.NODE_ENV === 'development';
-if (isDev) {
-
+if (isDev || process.env.NODE_ENV === undefined) {
+	// express server
+	var app = express();
+	app.engine('.jsx', engine);
+	//app.use(express.static(__dirname + '/build'));
 	app.get('/', function(req, res) {
-		res.sendFile(__dirname + '/build/index.html');
+		res.sendFile(path.resolve(__dirname + '/build/index.html'));
+	});
+	app.listen(8081);
+
+	// webpack Dev Server
+	var webpack = require('webpack');
+	var WebpackDevServer = require('webpack-dev-server');
+	var server = new WebpackDevServer(webpack(config), {
+	    contentBase: path.resolve(__dirname, 'build'),
+	    historyApiFallback: true,
+	    publicPath: "http://localhost:8080/build/",
+	    hot: true,
+	    quiet: false,
+	    noInfo: false,
+	    stats: { colors: true },
+	    devServer: {
+	    	headers: { "Access-Control-Allow-Origin": "*" }
+	    },
+	    proxy: {
+	    	'*': 'http://localhost:8081'
+	    }
+	}).listen(8080, 'localhost', function(err, result) {
+		if (err) console.warn(err);
+		console.log('webpack server listening at localhost:8080')
 	});
 
-	app.use('/', express.static(__dirname + '/build'));
-
-	io.on('connection', socketHandler);
-
-	server.listen(3000);
+	routes(app);
+	//server.listen(8081, 'localhost', function() {});
+	//server.listen(8080);
 } else {
-	app.use('/', express.static(__dirname + '/dist'));
+	//app.use('/', express.static(__dirname + '/dist'));
 }
-
-// app.listen(port, function() {
-// 	console.log('App listening on port', port);
-// });
-
-
-
-

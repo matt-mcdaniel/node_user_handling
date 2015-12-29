@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "41df291c5920d4f4a156"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b0abf3c2602421411341"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -559,10 +559,6 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
 	__webpack_require__(2);
 
 	var _react = __webpack_require__(12);
@@ -620,24 +616,26 @@
 	// });
 
 	// Import Styles
-	_reactDom2.default.render(_react2.default.createElement(
-		_reactRedux.Provider,
-		{ store: _logger2.default },
-		_react2.default.createElement(
-			_reactRouter.Router,
-			null,
+	var render = function render() {
+		_reactDom2.default.render(_react2.default.createElement(
+			_reactRedux.Provider,
+			{ store: _logger2.default },
 			_react2.default.createElement(
-				_reactRouter.Route,
-				{ path: '/', component: _app2.default },
-				_react2.default.createElement(_reactRouter.IndexRoute, { component: _userList2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: 'users', component: _userList2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: 'users/:id', component: _userDetail2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default })
+				_reactRouter.Router,
+				null,
+				_react2.default.createElement(
+					_reactRouter.Route,
+					{ path: '/', component: _app2.default },
+					_react2.default.createElement(_reactRouter.IndexRoute, { component: _userList2.default }),
+					_react2.default.createElement(_reactRouter.Route, { path: 'users', component: _userList2.default }),
+					_react2.default.createElement(_reactRouter.Route, { path: 'users/:id', component: _userDetail2.default }),
+					_react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default })
+				)
 			)
-		)
-	), document.getElementById('app'));
+		), document.getElementById('app'));
+	};
 
-	exports.default = null;
+	render();
 
 /***/ },
 /* 2 */
@@ -26066,7 +26064,7 @@
 		'url': '/users'
 	}, {
 		'id': 2,
-		'name': 'Aboutsqd3dded411114455d2ppd35',
+		'name': 'Aboutsqd3dded411114455d',
 		'url': '/about'
 	}];
 
